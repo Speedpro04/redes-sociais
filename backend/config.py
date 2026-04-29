@@ -41,3 +41,7 @@ class Settings(BaseSettings):
 
 def get_settings():
     return Settings()
+
+
+# Backward compatibility for modules importing `settings` directly
+settings = get_settings()

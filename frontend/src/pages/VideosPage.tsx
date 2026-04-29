@@ -75,6 +75,10 @@ export default function VideosPage() {
     )
   }
 
+  const completedCount = generations.filter((g) => g.status === 'completed').length
+  const processingCount = generations.filter((g) => g.status === 'processing').length
+  const failedCount = generations.filter((g) => g.status === 'failed').length
+
   return (
     <div className="min-h-screen bg-gray-900">
       <nav className="bg-gray-800 border-b border-gray-700">
@@ -140,32 +144,57 @@ export default function VideosPage() {
 
       <main className="w-full py-6 px-4 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold text-white">Vídeos</h2>
-            <select
-              value={selectedStore}
-              onChange={(e) => setSelectedStore(e.target.value)}
-              className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm border border-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
-            >
-              <option value="">Todas as lojas</option>
-              {stores.map((store) => (
-                <option key={store.id} value={store.id}>
-                  {store.name}
-                </option>
-              ))}
-            </select>
+          <div className="mb-6 bg-gray-800 border border-gray-700 rounded-xl p-4 md:p-6">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-bold text-white">Central de Vídeos</h2>
+                <p className="text-sm text-gray-400 mt-1">
+                  Gerencie templates e acompanhe o status das gerações em um só lugar.
+                </p>
+              </div>
+              <select
+                value={selectedStore}
+                onChange={(e) => setSelectedStore(e.target.value)}
+                className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm border border-gray-600 focus:outline-none focus:ring-2 focus:ring-orange-500"
+              >
+                <option value="">Todas as lojas</option>
+                {stores.map((store) => (
+                  <option key={store.id} value={store.id}>
+                    {store.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-5">
+              <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+                <p className="text-xs text-gray-400">Templates</p>
+                <p className="text-xl font-bold text-white">{templates.length}</p>
+              </div>
+              <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+                <p className="text-xs text-gray-400">Concluídos</p>
+                <p className="text-xl font-bold text-green-400">{completedCount}</p>
+              </div>
+              <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+                <p className="text-xs text-gray-400">Processando</p>
+                <p className="text-xl font-bold text-purple-400">{processingCount}</p>
+              </div>
+              <div className="bg-gray-900 rounded-lg p-3 border border-gray-700">
+                <p className="text-xs text-gray-400">Falhas</p>
+                <p className="text-xl font-bold text-red-400">{failedCount}</p>
+              </div>
+            </div>
           </div>
 
           <div className="mb-6">
-            <div className="border-b border-gray-700">
-              <nav className="-mb-px flex space-x-8">
+            <div className="bg-gray-800 p-2 rounded-lg inline-flex gap-2">
                 <button
                   onClick={() => setActiveTab('templates')}
                   className={`${
                     activeTab === 'templates'
-                      ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent text-gray-400 hover:text-gray-300'
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                      ? 'bg-orange-600 text-white'
+                      : 'text-gray-300 hover:bg-gray-700'
+                  } whitespace-nowrap py-2 px-4 rounded-md font-medium text-sm transition-colors`}
                 >
                   Templates ({templates.length})
                 </button>
@@ -173,25 +202,24 @@ export default function VideosPage() {
                   onClick={() => setActiveTab('generations')}
                   className={`${
                     activeTab === 'generations'
-                      ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent text-gray-400 hover:text-gray-300'
-                  } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+                      ? 'bg-orange-600 text-white'
+                      : 'text-gray-300 hover:bg-gray-700'
+                  } whitespace-nowrap py-2 px-4 rounded-md font-medium text-sm transition-colors`}
                 >
                   Gerações ({generations.length})
                 </button>
-              </nav>
             </div>
           </div>
 
           {activeTab === 'templates' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {templates.map((template) => (
-                <div key={template.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div key={template.id} className="bg-gray-800 border border-gray-700 overflow-hidden shadow rounded-lg">
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div>
                         <h3 className="text-lg font-medium text-white">{template.name}</h3>
-                        <p className="text-sm text-gray-400">{template.description}</p>
+                        <p className="text-sm text-gray-400 mt-1">{template.description || 'Sem descrição'}</p>
                       </div>
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStyleColor(template.style)}`}>
                         {template.style}
@@ -228,27 +256,28 @@ export default function VideosPage() {
           {activeTab === 'generations' && (
             <div className="space-y-4">
               {generations.map((generation) => (
-                <div key={generation.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div key={generation.id} className="bg-gray-800 border border-gray-700 overflow-hidden shadow rounded-lg">
                   <div className="p-6">
-                    <div className="flex items-start justify-between mb-4">
+                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
                       <div>
-                        <h3 className="text-lg font-medium text-white">Veículo ID: {generation.vehicle_id}</h3>
-                        <p className="text-sm text-gray-400">Loja ID: {generation.store_id}</p>
+                        <h3 className="text-lg font-medium text-white">Geração de Vídeo</h3>
+                        <p className="text-sm text-gray-400">Veículo: {generation.vehicle_id}</p>
+                        <p className="text-sm text-gray-400">Loja: {generation.store_id}</p>
                       </div>
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(generation.status)}`}>
                         {generation.status}
                       </span>
                     </div>
                     {generation.video_url && (
-                      <div className="mb-4">
+                      <div className="mb-4 bg-gray-900 rounded-lg p-3 border border-gray-700">
                         <video
                           src={generation.video_url}
                           controls
-                          className="w-full max-w-md rounded-lg"
+                          className="w-full max-w-2xl rounded-lg"
                         />
                       </div>
                     )}
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
                       <div>
                         <span className="text-gray-400">Duração:</span>
                         <span className="text-white ml-2">{generation.duration}s</span>

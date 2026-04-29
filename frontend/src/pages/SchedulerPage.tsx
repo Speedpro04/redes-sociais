@@ -87,8 +87,8 @@ export default function SchedulerPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="bg-gray-800 border-b border-gray-700">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <nav className="sticky top-0 z-20 border-b border-slate-700/60 bg-slate-900/80 backdrop-blur">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -98,37 +98,37 @@ export default function SchedulerPage() {
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
                   href="/dashboard"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Dashboard
                 </a>
                 <a
                   href="/stores"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Lojas
                 </a>
                 <a
                   href="/vehicles"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Veículos
                 </a>
                 <a
                   href="/social-media"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Redes Sociais
                 </a>
                 <a
                   href="/videos"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Vídeos
                 </a>
                 <a
                   href="/scheduler"
-                  className="border-orange-500 text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-orange-500 text-slate-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Agendador
                 </a>
@@ -140,7 +140,7 @@ export default function SchedulerPage() {
                   localStorage.removeItem('token')
                   navigate('/')
                 }}
-                className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-600"
+                className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-600 transition-colors"
               >
                 Sair
               </button>
@@ -154,11 +154,11 @@ export default function SchedulerPage() {
           <h2 className="text-2xl font-bold text-white mb-6">Agendador Automático</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+            <div className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Status do Scheduler</h3>
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Status:</span>
+                  <span className="text-slate-400">Status:</span>
                   <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                     status?.running ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
                   }`}>
@@ -166,7 +166,7 @@ export default function SchedulerPage() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-gray-400">Jobs Ativos:</span>
+                  <span className="text-slate-400">Jobs Ativos:</span>
                   <span className="text-white">{status?.jobs_count || 0}</span>
                 </div>
               </div>
@@ -196,7 +196,7 @@ export default function SchedulerPage() {
               </div>
             </div>
 
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+            <div className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Jobs Agendados</h3>
               {status?.jobs && status.jobs.length > 0 ? (
                 <div className="space-y-3">
@@ -204,18 +204,18 @@ export default function SchedulerPage() {
                     <div key={index} className="bg-gray-700 rounded-md p-3">
                       <div className="flex items-center justify-between">
                         <span className="text-white text-sm">{job.id}</span>
-                        <span className="text-gray-400 text-xs">
+                        <span className="text-slate-400 text-xs">
                           {job.next_run_time
                             ? new Date(job.next_run_time).toLocaleString('pt-BR')
                             : 'N/A'}
                         </span>
                       </div>
-                      <p className="text-gray-400 text-xs mt-1">{job.trigger}</p>
+                      <p className="text-slate-400 text-xs mt-1">{job.trigger}</p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-400 text-sm">Nenhum job agendado</p>
+                <p className="text-slate-400 text-sm">Nenhum job agendado</p>
               )}
             </div>
           </div>
@@ -224,7 +224,7 @@ export default function SchedulerPage() {
             <h3 className="text-lg font-medium text-white mb-4">Configurar Schedules Automáticos</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {stores.map((store) => (
-                <div key={store.id} className="bg-gray-800 overflow-hidden shadow rounded-lg p-4">
+                <div key={store.id} className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-4">
                   <div className="flex items-center justify-between mb-3">
                     <h4 className="text-white font-medium">{store.name}</h4>
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
@@ -233,7 +233,7 @@ export default function SchedulerPage() {
                       {store.active ? 'Ativo' : 'Inativo'}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 mb-3">{store.city || 'Cidade não informada'}</p>
+                  <p className="text-sm text-slate-400 mb-3">{store.city || 'Cidade não informada'}</p>
                   <button
                     onClick={() => handleAutoConfigure(store.id)}
                     className="w-full bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-orange-700"
@@ -246,14 +246,14 @@ export default function SchedulerPage() {
 
             {stores.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-400">Nenhuma loja encontrada</p>
+                <p className="text-slate-400">Nenhuma loja encontrada</p>
               </div>
             )}
           </div>
 
-          <div className="mt-8 bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+          <div className="mt-8 bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-6">
             <h3 className="text-lg font-medium text-white mb-4">Como Funciona</h3>
-            <div className="space-y-4 text-gray-300">
+            <div className="space-y-4 text-slate-300">
               <div className="flex items-start">
                 <span className="flex-shrink-0 w-6 h-6 rounded-full bg-orange-500 text-white flex items-center justify-center text-sm mr-3">1</span>
                 <p>Configure as contas de redes sociais para cada loja</p>
@@ -281,3 +281,4 @@ export default function SchedulerPage() {
     </div>
   )
 }
+

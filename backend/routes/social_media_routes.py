@@ -65,6 +65,19 @@ class SocialMediaScheduleUpdate(BaseModel):
     active: Optional[bool] = None
 
 
+class SmartDescriptionRequest(BaseModel):
+    store_id: str
+    vehicle_id: str
+    platform: str = "instagram"
+    vehicle_name: str
+    vehicle_year: Optional[str] = None
+    vehicle_price: Optional[str] = None
+    vehicle_highlight: Optional[str] = None
+    target_audience: Optional[str] = None
+    template_style: str = "spin"
+    save_draft: bool = True
+
+
 # ============================================
 # Social Media Accounts
 # ============================================
@@ -365,4 +378,63 @@ async def get_social_media_stats(store_id: Optional[str] = None):
         "scheduled_posts": scheduled_posts,
         "posted_posts": posted_posts,
         "active_accounts": active_accounts
+    }
+
+
+@router.post("/smart-description")
+async def generate_smart_description(payload: SmartDescriptionRequest):
+    """Gera descrição inteligente SPIN e salva rascunho automático quando possível."""
+    audience = payload.target_audience or "que quer decidir com segurança"
+    highlight = payload.vehicle_highlight or "excelente custo-benefício"
+    year = f" {payload.vehicle_year}" if payload.vehicle_year else ""
+    price = f" por {payload.vehicle_price}" if payload.vehicle_price else ""
+
+    title = f"{payload.vehicle_name}{year} em destaque"
+    description = (
+        f"Situação: você está buscando um carro para {audience}. "
+        f"Problema: adiar essa troca mantém custos altos e insegurança na rotina. "
+        f"Implicação: quanto mais você espera, maior o risco de perder boas opções. "
+        f"Solução: {payload.vehicle_name}{year} com {highlight}{price}. "
+        f"Me chama no WhatsApp agora e eu te envio a condição ideal para fechar."
+    )
+
+    draft_saved = False
+    draft_id = None
+    message = "Descrição gerada com sucesso"
+
+    if payload.save_draft:
+        account_response = supabase.table("social_media_accounts").select("id").eq(
+            "store_id", payload.store_id
+        ).eq("platform", payload.platform).eq("active", True).limit(1).execute()
+
+        if account_response.data:
+            account_id = account_response.data[0]["id"]
+            draft_response = supabase.table("social_media_posts").insert({
+                "store_id": payload.store_id,
+                "vehicle_id": payload.vehicle_id,
+                "platform": payload.platform,
+                "account_id": account_id,
+                "title": title,
+                "description": description,
+                "video_url": "",
+                "status": "pending",
+                "metrics": {
+                    "smart_template": payload.template_style,
+                    "captions_enabled": True
+                }
+            }).execute()
+            if draft_response.data:
+                draft_saved = True
+                draft_id = draft_response.data[0]["id"]
+                message = "Descrição gerada e rascunho salvo com sucesso"
+        else:
+            message = "Descrição gerada. Nenhuma conta ativa encontrada para salvar rascunho."
+
+    return {
+        "title": title,
+        "description": description,
+        "captions_enabled": True,
+        "draft_saved": draft_saved,
+        "draft_id": draft_id,
+        "message": message
     }

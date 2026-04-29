@@ -55,8 +55,8 @@ export default function VehiclesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="bg-gray-800 border-b border-gray-700">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <nav className="sticky top-0 z-20 border-b border-slate-700/60 bg-slate-900/80 backdrop-blur">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -66,37 +66,37 @@ export default function VehiclesPage() {
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
                   href="/dashboard"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Dashboard
                 </a>
                 <a
                   href="/stores"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Lojas
                 </a>
                 <a
                   href="/vehicles"
-                  className="border-orange-500 text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-orange-500 text-slate-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Veículos
                 </a>
                 <a
                   href="/social-media"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Redes Sociais
                 </a>
                 <a
                   href="/videos"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Vídeos
                 </a>
                 <a
                   href="/scheduler"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Agendador
                 </a>
@@ -108,7 +108,7 @@ export default function VehiclesPage() {
                   localStorage.removeItem('token')
                   navigate('/')
                 }}
-                className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-600"
+                className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-600 transition-colors"
               >
                 Sair
               </button>
@@ -137,7 +137,7 @@ export default function VehiclesPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {vehicles.map((vehicle) => (
-              <div key={vehicle.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+              <div key={vehicle.id} className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl">
                 {vehicle.media && vehicle.media.length > 0 && (
                   <div className="relative h-48 bg-gray-700">
                     <img
@@ -157,15 +157,15 @@ export default function VehiclesPage() {
                 )}
                 <div className="p-6">
                   <h3 className="text-lg font-medium text-white mb-2">{vehicle.title}</h3>
-                  <div className="space-y-1 text-sm text-gray-400">
+                  <div className="space-y-1 text-sm text-slate-400">
                     <p>{vehicle.brand} - {vehicle.year}</p>
                     <p>{vehicle.km.toLocaleString()} km</p>
                     <p className="text-xl font-bold text-orange-500">{formatPrice(vehicle.price)}</p>
                   </div>
                   {vehicle.store && (
                     <div className="mt-4 pt-4 border-t border-gray-700">
-                      <p className="text-sm text-gray-400">{vehicle.store.name}</p>
-                      <p className="text-sm text-gray-400">{vehicle.store.city}</p>
+                      <p className="text-sm text-slate-400">{vehicle.store.name}</p>
+                      <p className="text-sm text-slate-400">{vehicle.store.city}</p>
                     </div>
                   )}
                 </div>
@@ -175,7 +175,7 @@ export default function VehiclesPage() {
 
           {vehicles.length === 0 && (
             <div className="text-center py-12">
-              <p className="text-gray-400">Nenhum veículo encontrado</p>
+              <p className="text-slate-400">Nenhum veículo encontrado</p>
             </div>
           )}
         </div>
@@ -183,3 +183,4 @@ export default function VehiclesPage() {
     </div>
   )
 }
+

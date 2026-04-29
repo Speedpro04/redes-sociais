@@ -50,8 +50,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="bg-gray-800 border-b border-gray-700">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <nav className="sticky top-0 z-20 border-b border-slate-700/60 bg-slate-900/80 backdrop-blur">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -61,37 +61,37 @@ export default function DashboardPage() {
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
                   href="/dashboard"
-                  className="border-orange-500 text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-orange-500 text-slate-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Dashboard
                 </a>
                 <a
                   href="/stores"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Lojas
                 </a>
                 <a
                   href="/vehicles"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Veículos
                 </a>
                 <a
                   href="/social-media"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Redes Sociais
                 </a>
                 <a
                   href="/videos"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Vídeos
                 </a>
                 <a
                   href="/scheduler"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Agendador
                 </a>
@@ -100,7 +100,7 @@ export default function DashboardPage() {
             <div className="flex items-center">
               <button
                 onClick={handleLogout}
-                className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-600"
+                className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-600 transition-colors"
               >
                 Sair
               </button>
@@ -111,10 +111,14 @@ export default function DashboardPage() {
 
       <main className="w-full py-6 px-4 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <h2 className="text-2xl font-bold text-white mb-6">Dashboard</h2>
+          <div className="mb-8 rounded-2xl border border-orange-500/30 bg-gradient-to-r from-orange-500/20 via-slate-900 to-slate-900 p-6">
+            <p className="text-xs uppercase tracking-[0.2em] text-orange-300">Painel Inteligente</p>
+            <h2 className="mt-2 text-3xl font-bold text-white">Dashboard de Performance</h2>
+            <p className="mt-2 text-slate-300">Visão rápida de operação, geração e publicação em redes sociais.</p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg">
+            <div className="bg-gradient-to-br from-orange-500/20 to-slate-900 border border-orange-400/30 overflow-hidden shadow-xl rounded-xl">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 bg-orange-500 rounded-md p-3">
@@ -124,7 +128,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-400 truncate">Total de Lojas</dt>
+                      <dt className="text-sm font-medium text-slate-400 truncate">Total de Lojas</dt>
                       <dd className="text-3xl font-semibold text-white">{stats?.total_stores || 0}</dd>
                     </dl>
                   </div>
@@ -132,7 +136,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg">
+            <div className="bg-gradient-to-br from-blue-500/20 to-slate-900 border border-blue-400/30 overflow-hidden shadow-xl rounded-xl">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 bg-blue-500 rounded-md p-3">
@@ -142,7 +146,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-400 truncate">Total de Posts</dt>
+                      <dt className="text-sm font-medium text-slate-400 truncate">Total de Posts</dt>
                       <dd className="text-3xl font-semibold text-white">{stats?.total_posts || 0}</dd>
                     </dl>
                   </div>
@@ -150,7 +154,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg">
+            <div className="bg-gradient-to-br from-green-500/20 to-slate-900 border border-green-400/30 overflow-hidden shadow-xl rounded-xl">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 bg-green-500 rounded-md p-3">
@@ -160,7 +164,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-400 truncate">Posts Publicados</dt>
+                      <dt className="text-sm font-medium text-slate-400 truncate">Posts Publicados</dt>
                       <dd className="text-3xl font-semibold text-white">{stats?.posted_posts || 0}</dd>
                     </dl>
                   </div>
@@ -168,7 +172,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg">
+            <div className="bg-gradient-to-br from-purple-500/20 to-slate-900 border border-purple-400/30 overflow-hidden shadow-xl rounded-xl">
               <div className="p-5">
                 <div className="flex items-center">
                   <div className="flex-shrink-0 bg-purple-500 rounded-md p-3">
@@ -178,7 +182,7 @@ export default function DashboardPage() {
                   </div>
                   <div className="ml-5 w-0 flex-1">
                     <dl>
-                      <dt className="text-sm font-medium text-gray-400 truncate">Vídeos Gerados</dt>
+                      <dt className="text-sm font-medium text-slate-400 truncate">Vídeos Gerados</dt>
                       <dd className="text-3xl font-semibold text-white">{stats?.completed_generations || 0}</dd>
                     </dl>
                   </div>
@@ -188,25 +192,25 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+            <div className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Status dos Posts</h3>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Pendentes</span>
+                  <span className="text-slate-400">Pendentes</span>
                   <span className="text-white font-semibold">{stats?.pending_posts || 0}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Agendados</span>
+                  <span className="text-slate-400">Agendados</span>
                   <span className="text-white font-semibold">{stats?.scheduled_posts || 0}</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-400">Publicados</span>
+                  <span className="text-slate-400">Publicados</span>
                   <span className="text-white font-semibold">{stats?.posted_posts || 0}</span>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-800 overflow-hidden shadow rounded-lg p-6">
+            <div className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl p-6">
               <h3 className="text-lg font-medium text-white mb-4">Contas Ativas</h3>
               <div className="flex items-center justify-center">
                 <div className="text-5xl font-bold text-orange-500">{stats?.active_accounts || 0}</div>
@@ -218,3 +222,4 @@ export default function DashboardPage() {
     </div>
   )
 }
+

@@ -28,7 +28,7 @@ export default function LoginPage() {
           <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
             Sistema de Redes Sociais
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-400">
+          <p className="mt-2 text-center text-sm text-slate-400">
             Faça login para acessar o painel administrativo
           </p>
         </div>
@@ -78,3 +78,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

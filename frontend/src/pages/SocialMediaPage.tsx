@@ -80,8 +80,8 @@ export default function SocialMediaPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900">
-      <nav className="bg-gray-800 border-b border-gray-700">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
+      <nav className="sticky top-0 z-20 border-b border-slate-700/60 bg-slate-900/80 backdrop-blur">
         <div className="w-full px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -91,37 +91,37 @@ export default function SocialMediaPage() {
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
                   href="/dashboard"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Dashboard
                 </a>
                 <a
                   href="/stores"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Lojas
                 </a>
                 <a
                   href="/vehicles"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Veículos
                 </a>
                 <a
                   href="/social-media"
-                  className="border-orange-500 text-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-orange-500 text-slate-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Redes Sociais
                 </a>
                 <a
                   href="/videos"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Vídeos
                 </a>
                 <a
                   href="/scheduler"
-                  className="border-transparent text-gray-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  className="border-transparent text-slate-300 hover:border-gray-300 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
                 >
                   Agendador
                 </a>
@@ -133,7 +133,7 @@ export default function SocialMediaPage() {
                   localStorage.removeItem('token')
                   navigate('/')
                 }}
-                className="bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-600"
+                className="bg-slate-700 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-600 transition-colors"
               >
                 Sair
               </button>
@@ -168,7 +168,7 @@ export default function SocialMediaPage() {
                   className={`${
                     activeTab === 'accounts'
                       ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent text-gray-400 hover:text-gray-300'
+                      : 'border-transparent text-slate-400 hover:text-slate-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                 >
                   Contas ({accounts.length})
@@ -178,7 +178,7 @@ export default function SocialMediaPage() {
                   className={`${
                     activeTab === 'posts'
                       ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent text-gray-400 hover:text-gray-300'
+                      : 'border-transparent text-slate-400 hover:text-slate-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                 >
                   Posts ({posts.length})
@@ -188,7 +188,7 @@ export default function SocialMediaPage() {
                   className={`${
                     activeTab === 'schedules'
                       ? 'border-orange-500 text-orange-500'
-                      : 'border-transparent text-gray-400 hover:text-gray-300'
+                      : 'border-transparent text-slate-400 hover:text-slate-300'
                   } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                 >
                   Agendamentos ({schedules.length})
@@ -200,13 +200,13 @@ export default function SocialMediaPage() {
           {activeTab === 'accounts' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {accounts.map((account) => (
-                <div key={account.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div key={account.id} className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl">
                   <div className="p-6">
                     <div className="flex items-center mb-4">
                       <span className="text-4xl mr-4">{getPlatformIcon(account.platform)}</span>
                       <div>
                         <h3 className="text-lg font-medium text-white">{account.account_name || account.account_id}</h3>
-                        <p className="text-sm text-gray-400 capitalize">{account.platform}</p>
+                        <p className="text-sm text-slate-400 capitalize">{account.platform}</p>
                       </div>
                     </div>
                     <div className="flex items-center justify-between">
@@ -215,7 +215,7 @@ export default function SocialMediaPage() {
                       }`}>
                         {account.active ? 'Ativo' : 'Inativo'}
                       </span>
-                      <span className="text-sm text-gray-400">
+                      <span className="text-sm text-slate-400">
                         {new Date(account.created_at).toLocaleDateString('pt-BR')}
                       </span>
                     </div>
@@ -224,7 +224,7 @@ export default function SocialMediaPage() {
               ))}
               {accounts.length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-400">Nenhuma conta conectada</p>
+                  <p className="text-slate-400">Nenhuma conta conectada</p>
                 </div>
               )}
             </div>
@@ -233,21 +233,21 @@ export default function SocialMediaPage() {
           {activeTab === 'posts' && (
             <div className="space-y-4">
               {posts.map((post) => (
-                <div key={post.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div key={post.id} className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl">
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center">
                         <span className="text-2xl mr-3">{getPlatformIcon(post.platform)}</span>
                         <div>
                           <h3 className="text-lg font-medium text-white">{post.title}</h3>
-                          <p className="text-sm text-gray-400 capitalize">{post.platform}</p>
+                          <p className="text-sm text-slate-400 capitalize">{post.platform}</p>
                         </div>
                       </div>
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${getStatusColor(post.status)}`}>
                         {post.status}
                       </span>
                     </div>
-                    <p className="text-gray-300 mb-4">{post.description}</p>
+                    <p className="text-slate-300 mb-4">{post.description}</p>
                     {post.video_url && (
                       <div className="mb-4">
                         <video
@@ -257,7 +257,7 @@ export default function SocialMediaPage() {
                         />
                       </div>
                     )}
-                    <div className="flex items-center justify-between text-sm text-gray-400">
+                    <div className="flex items-center justify-between text-sm text-slate-400">
                       <span>Veículo ID: {post.vehicle_id}</span>
                       <span>
                         {post.scheduled_at
@@ -272,7 +272,7 @@ export default function SocialMediaPage() {
               ))}
               {posts.length === 0 && (
                 <div className="text-center py-12">
-                  <p className="text-gray-400">Nenhum post encontrado</p>
+                  <p className="text-slate-400">Nenhum post encontrado</p>
                 </div>
               )}
             </div>
@@ -281,22 +281,22 @@ export default function SocialMediaPage() {
           {activeTab === 'schedules' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {schedules.map((schedule) => (
-                <div key={schedule.id} className="bg-gray-800 overflow-hidden shadow rounded-lg">
+                <div key={schedule.id} className="bg-slate-900/70 border border-slate-700/60 overflow-hidden shadow-xl rounded-xl">
                   <div className="p-6">
                     <div className="flex items-center mb-4">
                       <span className="text-4xl mr-4">{getPlatformIcon(schedule.platform)}</span>
                       <div>
                         <h3 className="text-lg font-medium text-white capitalize">{schedule.platform}</h3>
-                        <p className="text-sm text-gray-400 capitalize">{schedule.time_period}</p>
+                        <p className="text-sm text-slate-400 capitalize">{schedule.time_period}</p>
                       </div>
                     </div>
                     <div className="space-y-2">
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Horário:</span>
+                        <span className="text-slate-400">Horário:</span>
                         <span className="text-white">{schedule.post_time}</span>
                       </div>
                       <div className="flex justify-between text-sm">
-                        <span className="text-gray-400">Timezone:</span>
+                        <span className="text-slate-400">Timezone:</span>
                         <span className="text-white">{schedule.timezone}</span>
                       </div>
                     </div>
@@ -312,7 +312,7 @@ export default function SocialMediaPage() {
               ))}
               {schedules.length === 0 && (
                 <div className="col-span-full text-center py-12">
-                  <p className="text-gray-400">Nenhum agendamento configurado</p>
+                  <p className="text-slate-400">Nenhum agendamento configurado</p>
                 </div>
               )}
             </div>
@@ -322,3 +322,4 @@ export default function SocialMediaPage() {
     </div>
   )
 }
+

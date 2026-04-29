@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap');
 
 :root {
   font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -27,6 +28,11 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+}
+
+.font-architect {
+  font-family: 'Architects Daughter', cursive;
+  letter-spacing: 0.04em;
 }
 
 ::selection {

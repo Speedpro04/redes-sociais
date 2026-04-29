@@ -56,7 +56,7 @@ export default function DashboardPage() {
           <div className="flex justify-between h-16">
             <div className="flex">
               <div className="flex-shrink-0 flex items-center">
-                <h1 className="text-white text-xl font-bold">Redes Sociais</h1>
+                <h1 className="text-white text-xl font-bold flex items-baseline gap-2"><span className="font-architect text-white text-2xl">AUTO RACER</span><span className="text-orange-300">Redes Sociais</span></h1>
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
                 <a
@@ -222,4 +222,6 @@ export default function DashboardPage() {
     </div>
   )
 }
+
+
 
